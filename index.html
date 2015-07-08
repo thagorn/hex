@@ -3,10 +3,19 @@
     <link rel="stylesheet" type="text/css" media="screen, print" href="static/css/temp_styles.css">
   </head>
   <body>
-    <svg id="hex"></svg>
-    <script src="lib/js/d3.min.js"></script>
-    <script src="static/js/_compiled_hexlib.js"></script>
-    <script src="static/js/ui.js"></script>
-    <script src="static/js/cubegrid.js"></script>
+    <div>
+      Width: <input id="width" type="text" value="7" />
+      Height: <input id="height" type="text" value="7" />
+      Scale: <input id="scale" type="text" value="30" />
+      <input type="button" onclick="createGrid();" value="Create Grid" />
+    </div>
+    <svg id="hex" width="260" height="260"></svg>
+    <script src="static/js/lib/d3.min.js"></script>
+    <script src="static/js/lib/jquery-2.1.4.min.js"></script>
+    <script src="static/js/test.js"></script>
+    <script src="static/js/deprecate/_compiled_hexlib.js"></script>
+    <script src="static/js/deprecate/ui.js"></script>
+    <script src="static/js/deprecate/onload.js"></script>
+    <script src="static/js/deprecate/cubegrid.js"></script>
   </body>
 </html>
