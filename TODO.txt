@@ -1,0 +1,73 @@
+Current Tasks:
+  * Paul
+    - UI
+      # Paint bucket
+      # Paint brush
+  * Andy
+    - Basic map creator
+    - Deprecate copied code
+
+Code / file management:
+  * Deprecate copied code
+
+Objects:
+  * Types:
+    - 'data' object
+      # Container design for other objects
+    - Background
+      # Background objects need to be easily translated into css classes
+    - Map
+    - Hex
+  * toJson()
+  * fromJson()
+  * Documentation for JSON blob
+
+Concepts:
+  * Subgrids
+    - rooms inside dungeon
+    - current vision in FoW
+  * Joining maps
+    - Along full edge
+    - Doorway
+    - Both maps visible and/or one visible at a time
+  * Map wrapping? (sorta weird but maybe a use case)
+  * Map chunking
+    - Values:
+      # Chunk center
+      # Focal point (where a unit/cursor is)
+      # Minimum distance from chunk center or focal point
+      # Maximum distance from chunk center or focal point
+    - Use cases:
+      # Fog of war (web UI should only load what user can actually see)
+      # Performance (big maps should only need local area)
+
+Map logic:
+  * Obstacles
+  * Line of sight
+  * Pathing
+    - Travel distance
+      # Subtract value when ENTER hex (less likely to be stuck on a hex)
+    - Minimum distance to point
+
+UI:
+  * Hex creator
+  * Paint bucket
+  * Paint brush
+  * Undo
+    - For each action store inverse action in LIFO queue
+  * Base map creator
+    - Hex size
+    - Map outer dimensions
+    - Hex eraser
+
+Server:
+  * Basic flask server
+    - Make static directory accessible directly
+  * Authentication
+    - User DB
+    - Password storage
+  * Websockets
+  * API
+
+
+
