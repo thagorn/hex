@@ -1,0 +1,18 @@
+(function(){
+    Hex = function(x, y) {
+        //Public functions
+        //"Private" functions
+        //Initialization
+        this._init = function(x, y) {
+            this.x = x;
+            this.y = y;
+            this.classes = ["tile"];
+        };
+        if(this._initialized) {
+            return new Hex(x, y);
+        } else {
+            this._init(x, y);
+            return this;
+        }
+    };
+})();

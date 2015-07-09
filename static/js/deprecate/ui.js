@@ -206,6 +206,7 @@ function makeGridDiagram(svg, cubes) {
         .append('g').attr('class', "tile")
         .each(function(d) { d.node = d3.select(this); });
     diagram.polygons = diagram.tiles.append('polygon');
+    console.log(diagram);
 
 
     diagram.makeTilesSelectable = function(callback) {
@@ -739,7 +740,7 @@ function makeNeighbors(id_diagram, id_code, converter, parity_var) {
         var h1 = diagram.converter(base);
         var h2 = diagram.converter(Cube.neighbor(base, i));
         var dq = h2.q - h1.q, dr = h2.r - h1.r;
-        return new Hex(dq, dr);
+        return new dHex(dq, dr);
     }
 
     if (diagram.converter) {
@@ -759,7 +760,7 @@ function makeNeighbors(id_diagram, id_code, converter, parity_var) {
             code.text(function(_, i) {
                 var h = neighbor(i >= 6, i % 6);
                 function fmt(x) { if (x > 0) x = "+" + x; else x = "" + x; if (x.length < 2) x = " " + x; return x; }
-                return ["Hex(", fmt(h.q), ", ", fmt(h.r), ")"].join("");
+                return ["dHex(", fmt(h.q), ", ", fmt(h.r), ")"].join("");
             });
         });
     }

@@ -104,7 +104,7 @@ Grid.twoAxisToCube = function(hex) {
 	return new Cube(hex.q,-hex.r - hex.q,hex.r);
 };
 Grid.cubeToTwoAxis = function(cube) {
-	return new Hex(cube.x | 0,cube.z | 0);
+	return new dHex(cube.x | 0,cube.z | 0);
 };
 Grid.oddQToCube = function(hex) {
 	var x = hex.q;
@@ -114,7 +114,7 @@ Grid.oddQToCube = function(hex) {
 Grid.cubeToOddQ = function(cube) {
 	var x = cube.x | 0;
 	var z = cube.z | 0;
-	return new Hex(x,z + (x - (x & 1) >> 1));
+	return new dHex(x,z + (x - (x & 1) >> 1));
 };
 Grid.evenQToCube = function(hex) {
 	var x = hex.q;
@@ -124,7 +124,7 @@ Grid.evenQToCube = function(hex) {
 Grid.cubeToEvenQ = function(cube) {
 	var x = cube.x | 0;
 	var z = cube.z | 0;
-	return new Hex(x,z + (x + (x & 1) >> 1));
+	return new dHex(x,z + (x + (x & 1) >> 1));
 };
 Grid.oddRToCube = function(hex) {
 	var z = hex.r;
@@ -134,7 +134,7 @@ Grid.oddRToCube = function(hex) {
 Grid.cubeToOddR = function(cube) {
 	var x = cube.x | 0;
 	var z = cube.z | 0;
-	return new Hex(x + (z - (z & 1) >> 1),z);
+	return new dHex(x + (z - (z & 1) >> 1),z);
 };
 Grid.evenRToCube = function(hex) {
 	var z = hex.r;
@@ -144,7 +144,7 @@ Grid.evenRToCube = function(hex) {
 Grid.cubeToEvenR = function(cube) {
 	var x = cube.x | 0;
 	var z = cube.z | 0;
-	return new Hex(x + (z + (z & 1) >> 1),z);
+	return new dHex(x + (z + (z & 1) >> 1),z);
 };
 Grid.trapezoidalShape = function(minQ,maxQ,minR,maxR,toCube) {
 	var hexes = [];
@@ -156,7 +156,7 @@ Grid.trapezoidalShape = function(minQ,maxQ,minR,maxR,toCube) {
 		var _g2 = maxR + 1;
 		while(_g3 < _g2) {
 			var r = _g3++;
-			hexes.push(toCube(new Hex(q,r)));
+			hexes.push(toCube(new dHex(q,r)));
 		}
 	}
 	return hexes;
@@ -233,11 +233,11 @@ Grid.prototype = {
 		return points;
 	}
 };
-var Hex = $hx_exports.Hex = function(q,r) {
+var dHex = $hx_exports.dHex = function(q,r) {
 	this.q = q;
 	this.r = r;
 };
-Hex.prototype = {
+dHex.prototype = {
 	toString: function() {
 		return this.q + ":" + this.r;
 	}

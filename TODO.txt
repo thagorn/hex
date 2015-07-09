@@ -9,6 +9,7 @@ Current Tasks:
 
 Code / file management:
   * Deprecate copied code
+  * Javascript concat / minify
 
 Objects:
   * Types:
@@ -18,6 +19,8 @@ Objects:
       # Background objects need to be easily translated into css classes
     - Map
     - Hex
+    - Unit
+      # Use a CSS class with ::after to apply to a cell
   * toJson()
   * fromJson()
   * Documentation for JSON blob
