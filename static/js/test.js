@@ -1,9 +1,13 @@
-function createGrid() {
-    $('#hex1')[0].innerHTML = "";
-    var w = parseInt($("#width").val());
-    var h = parseInt($("#height").val());
-    var s = parseInt($("#scale").val());
-    makeGridDiagram(d3.select('#hex1'),
-                        Grid.trapezoidalShape(0, w, 0, h, Grid.oddQToCube))
-            .update(s, false);
+map1 = new Map();
+function setDimensions() {
+    var rows = $("#rows").val()
+        , columns = $("#columns").val()
+        ;
+    map1.loadFromDimensions(rows, columns);
+}
+function draw() {
+    var which = $("#which").val()
+        , scale = $("#scale").val()
+        ;
+    map1.draw(d3.select("#hex" + which), scale);
 }

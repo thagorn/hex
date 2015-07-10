@@ -1,6 +1,33 @@
 (function(){
     Map = function() {
         //Public functions
+        this.setHexAction = function(eventName, handler) {
+            if(eventName === "drag") {
+                var $window = $(window)
+                    , map = this
+                    ;
+                $window.off("mousedown mousup");
+                if(handler != null) {
+                    this.setHexAction("mousedown", handler);
+                    $window.on("mousedown", function() {
+                        map.setHexAction("mouseover", handler);
+                    });
+                    $window.on("mouseup", function() {
+                        map.setHexAction("mouseover", null);
+                    });
+                } else {
+                    this.setHexAction("mousedown", null);
+                }
+            } else {
+                this._getSafeHexes().forEach(function(hex) {
+                    var $hex = $(hex.getNode()[0]);
+                    $hex.off(eventName);
+                    if(handler != null) {
+                        $hex.on(eventName, { "hex":hex, "map":this}, handler);
+                    }
+                }, this);
+            }
+        };
         this.draw = function(svg, scale) {
             var root
                 , hexNodes
@@ -10,47 +37,50 @@
             this.svg = svg;
             svg[0][0].innerHTML = "";
             root = svg.append('g');
-            hexNodes = root.selectAll("g").data(this._hexes)
-                        .enter().append("g")
-                            .attr('class', function(d) { return d.getClasses(); })
-                            .attr('transform', function(d) { return "translate(" + d.getOffset(scale) + ")";})
-                            .each(function(d) { d.setNode(d3.select(this)); });
             points = hexPoints(scale);
-            hexes = hexNodes.append('polygon')
-                        .attr('points', points);
+            hexNodes = root.selectAll("polygon")
+                        .data(this._getSafeHexes())
+                        .enter().append("polygon")
+                            .attr('class', function(d) { return d.getClasses(); })
+                            .attr('data-row', function(d) { return d.r; })
+                            .attr('data-column', function(d) { return d.c })
+                            .attr('transform', function(d) { return "translate(" + d.getOffset(scale) + ")";})
+                            .attr('points', points)
+                            .each(function(d) { d.setNode(d3.select(this)); });
             
         };
-        this.getHex = function(x, y) {
-            return this._hexes[this._getIndex(x, y)];
+        this.getHex = function(row, column) {
+            return this._hexes[this._getIndex(row, column)];
         };
-        this.deleteHex = function(x, y) {
-            this._hexes[this._getIndex(x, y)] = null;
-        };
-        this.setHexAction = function(hexAction) {
-            this.hexAction = hexAction;
-        };
-        this.getHexAction = function(hexAction) {
-            return this.hexAction;
+        this.deleteHex = function(row, column) {
+            var index = this._getIndex(row, column);
+            if(this._hexes[index] != null) {
+                this._hexes[index].getNode().remove();
+                this._hexes[index] = null;
+            }
         };
         this.loadFromDimensions = function(height, width) {
             this.height = height;
             this.width = width;
-            var x = 0
-              , y = 0
+            var row = 0
+              , column = 0
               ;
             this._hexes = [];
-            while(y < height) {
-                while(x < width) {
-                    var hex = Hex(this, x, y);
+            while(row < height) {
+                while(column < width) {
+                    var hex = Hex(this, row, column);
                     this._hexes.push(hex);
-                    x++;
+                    column++;
                 }
-                y++;
-                x = 0;
+                row++;
+                column = 0;
             }
         };
-        this._getIndex = function(x, y) {
-            return this.width * x + y;
+        this._getSafeHexes = function() {
+            return this._hexes.filter(function(d) { return d != null; });
+        }
+        this._getIndex = function(row, column) {
+            return this.width * row + column;
         };
         //Initialization
         this._init = function() {

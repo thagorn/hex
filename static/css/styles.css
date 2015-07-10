@@ -1,0 +1,11 @@
+body { margin: 20px; cursor: crosshair;}
+svg { overflow: visible; }
+.tile {
+    pointer-events: visiblePainted;
+    fill: hsl(60, 10%, 95%);
+    stroke: hsl(0, 0%, 70%);
+    stroke-width: 0.5;
+}
+.tile.blue {
+    fill: blue;
+}
