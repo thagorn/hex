@@ -1,5 +1,5 @@
 (function(){
-    Hex = function(map, r, c) {
+    Hex = function(grid, r, c) {
         //Public functions
         this.getOffset = function(scale) {
             var radius = scale / 2;
@@ -15,20 +15,25 @@
             return this.node;
         };
         this.addClass = function(newClass) {
-            if(this.classes.indexOf(newClass)  === -1) {
-                this.classes.push(newClass);
-            }
+            this.classes.add(newClass);
             this._applyClasses();
         };
         this.removeClass = function(oldClass) {
-            var index = this.classes.indexOf(oldClass);
-            if(index > -1) {
-                this.classes.splice(index, 1);
+            if(this.classes.remove(oldClass)) {
+                this._applyClasses();
             }
-            this._applyClasses();
         };
         this.getClasses = function() {
-            return this.classes.join(" ");
+            var classString = ""
+                , i = 0
+                ;
+            this.classes.forEach(function(className) {
+                if(i++ > 0) {
+                    classString += " ";
+                }
+                classString += className;
+            });
+            return classString;
         };
         //"Private" functions
         this._applyClasses = function() {
@@ -37,22 +42,22 @@
             }
         };
         //Initialization
-        this._init = function(map, r, c) {
+        this._init = function(grid, r, c) {
             this._initialized = true;
-            this.map = map;
+            this.grid = grid;
             this.r = r;
             this.c = c;
             this.x = c;
             //z = row - .5 * column rounded down
             this.z = r - (c - (c&1)) / 2
             // x + y + z = 0
-            this.y = -x-z
-            this.classes = ["tile"];
+            this.y = -this.x-this.z
+            this.classes = new Set(["tile"]);
         };
         if(this._initialized) {
-            return new Hex(map, r, c);
+            return new Hex(grid, r, c);
         } else {
-            this._init(map, r, c);
+            this._init(grid, r, c);
             return this;
         }
     };

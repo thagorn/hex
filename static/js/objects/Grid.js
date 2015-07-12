@@ -1,19 +1,19 @@
 (function(){
-    Map = function() {
+    Grid = function() {
         //Public functions
         this.setHexAction = function(eventName, handler) {
             if(eventName === "drag") {
                 var $window = $(window)
-                    , map = this
+                    , grid = this
                     ;
                 $window.off("mousedown mousup");
                 if(handler != null) {
                     this.setHexAction("mousedown", handler);
                     $window.on("mousedown", function() {
-                        map.setHexAction("mouseover", handler);
+                        grid.setHexAction("mouseover", handler);
                     });
                     $window.on("mouseup", function() {
-                        map.setHexAction("mouseover", null);
+                        grid.setHexAction("mouseover", null);
                     });
                 } else {
                     this.setHexAction("mousedown", null);
@@ -23,22 +23,19 @@
                     var $hex = $(hex.getNode()[0]);
                     $hex.off(eventName);
                     if(handler != null) {
-                        $hex.on(eventName, { "hex":hex, "map":this}, handler);
+                        $hex.on(eventName, { "hex":hex, "grid":this}, handler);
                     }
                 }, this);
             }
         };
         this.draw = function(svg, scale) {
-            var root
-                , hexNodes
-                , hexes
-                , points
-                ;
-            this.svg = svg;
-            svg[0][0].innerHTML = "";
-            root = svg.append('g');
-            points = hexPoints(scale);
-            hexNodes = root.selectAll("polygon")
+            this.scale = scale;
+            this.root = svg.selectAll("g").data([this])
+                            .enter().append("g");
+            this.redraw();
+        };
+        this.redraw = function() {
+            this.root.selectAll("polygon")
                         .data(this._getSafeHexes())
                         .enter().append("polygon")
                             .attr('class', function(d) { return d.getClasses(); })
@@ -47,16 +44,27 @@
                             .attr('transform', function(d) { return "translate(" + d.getOffset(scale) + ")";})
                             .attr('points', points)
                             .each(function(d) { d.setNode(d3.select(this)); });
-            
         };
         this.getHex = function(row, column) {
-            return this._hexes[this._getIndex(row, column)];
+            return this._hexes.get(this._getIndex(row, column));
+        };
+        this.createHex = function(row, column) {
+            var index = this._getIndex(row, column)
+                , hex = this._hexes.get(index)
+                ;
+            if(hex === undefined) {
+                hex = new Hex(this, row, column);
+                this._hexes.set(index, hex);
+                this.redraw();
+            }
         };
         this.deleteHex = function(row, column) {
-            var index = this._getIndex(row, column);
-            if(this._hexes[index] != null) {
-                this._hexes[index].getNode().remove();
-                this._hexes[index] = null;
+            var index = this._getIndex(row, column)
+                , hex = this._hexes.get(index)
+                ;
+            if(hex !== undefined) {
+                hex.getNode().remove();
+                this._hexes.delete(index);
             }
         };
         this.loadFromDimensions = function(height, width) {
@@ -65,11 +73,11 @@
             var row = 0
               , column = 0
               ;
-            this._hexes = [];
+            this._hexes = new Map();
             while(row < height) {
                 while(column < width) {
-                    var hex = Hex(this, row, column);
-                    this._hexes.push(hex);
+                    var hex = new Hex(this, row, column);
+                    this._hexes.set(this._getIndex(row, column), hex)
                     column++;
                 }
                 row++;
@@ -77,17 +85,25 @@
             }
         };
         this._getSafeHexes = function() {
-            return this._hexes.filter(function(d) { return d != null; });
+            var safe = []
+                , hex
+                ;
+            for(hex of this._hexes.values()) {
+                if(hex !== undefined) {
+                    safe.push(hex);
+                }
+            }
+            return safe;
         }
         this._getIndex = function(row, column) {
-            return this.width * row + column;
+            return row + "|" + column;
         };
         //Initialization
         this._init = function() {
             this._initialized = true;
         };
         if(this._initialized) {
-            return new Map();
+            return new Grid();
         } else {
             this._init();
             return this;
