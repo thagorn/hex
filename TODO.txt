@@ -4,11 +4,10 @@ Current Tasks:
       # Paint bucket
       # Paint brush
   * Andy
-    - Basic map creator
-    - Deprecate copied code
+    -Units
+    -Background map for creation
 
 Code / file management:
-  * Deprecate copied code
   * Javascript concat / minify
 
 Objects:
@@ -17,8 +16,6 @@ Objects:
       # Container design for other objects
     - Background
       # Background objects need to be easily translated into css classes
-    - Map
-    - Hex
     - Unit
       # Use a CSS class with ::after to apply to a cell
   * toJson()
@@ -59,10 +56,7 @@ UI:
   * Undo
     - For each action store inverse action in LIFO queue
   * Base map creator
-    - Hex size
-    - Map outer dimensions
-    - Hex eraser
-
+    - Hex adding
 Server:
   * Basic flask server
     - Make static directory accessible directly

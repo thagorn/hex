@@ -24,6 +24,9 @@
                     $hex.off(eventName);
                     if(handler != null) {
                         $hex.on(eventName, { "hex":hex, "grid":this}, handler);
+                        this._actions.set(eventName, handler);
+                    } else {
+                        this._actions.delete(eventName);
                     }
                 }, this);
             }
@@ -35,6 +38,9 @@
             this.redraw();
         };
         this.redraw = function() {
+            var scale = this.scale
+                , points = hexPoints(scale)
+                ;
             this.root.selectAll("polygon")
                         .data(this._getSafeHexes())
                         .enter().append("polygon")
@@ -51,11 +57,17 @@
         this.createHex = function(row, column) {
             var index = this._getIndex(row, column)
                 , hex = this._hexes.get(index)
+                , $hex
                 ;
             if(hex === undefined) {
                 hex = new Hex(this, row, column);
                 this._hexes.set(index, hex);
                 this.redraw();
+                $hex = $(hex.getNode()[0]);
+                this._actions.forEach(function(handler, eventName) {
+                    $hex.off(eventName);
+                    $hex.on(eventName, { "hex":hex, "grid":this}, handler);
+                }, this);
             }
         };
         this.deleteHex = function(row, column) {
@@ -101,6 +113,7 @@
         //Initialization
         this._init = function() {
             this._initialized = true;
+            this._actions = new Map();
         };
         if(this._initialized) {
             return new Grid();
