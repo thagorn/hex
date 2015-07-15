@@ -5,9 +5,10 @@ function setDimensions() {
         ;
     grid1.loadFromDimensions(rows, columns);
 }
+function scale() {
+    var scale = $("#scale").val();
+    grid1.setScale(scale);
+}
 function draw() {
-    var which = $("#which").val()
-        , scale = $("#scale").val()
-        ;
-    grid1.draw(d3.select("#hex" + which), scale);
+    grid1.draw("hex");
 }

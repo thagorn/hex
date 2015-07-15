@@ -10,9 +10,21 @@
         };
         this.setNode = function(node) {
             this.node = node;
+            this.$node = $(node[0]);
         };
         this.getNode = function() {
             return this.node;
+        };
+        this.addHexActions = function(eventMap) {
+            eventMap.forEach(function(handler, eventName) {
+                this.addHexAction(eventName, handler);
+            }, this);
+        };
+        this.addHexAction = function(eventName, handler) {
+            this.$node.off(eventName);
+            if(handler != null) {
+                this.$node.on(eventName, { "hex":this, "grid":this.grid}, handler);
+            }
         };
         this.addClass = function(newClass) {
             this.classes.add(newClass);

@@ -1,7 +1,8 @@
 #Creating a grid:
     grid = new grid();
     grid.loadFromDimensions(2,3);
-    grid.draw(d3.select("#hex1"), 30);
+    grid.setScale(30);
+    grid.draw("#hex");
 
 #Adding click handlers
 Note: redrawing removes all handlers

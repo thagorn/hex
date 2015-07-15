@@ -20,10 +20,8 @@
                 }
             } else {
                 this._getSafeHexes().forEach(function(hex) {
-                    var $hex = $(hex.getNode()[0]);
-                    $hex.off(eventName);
+                    hex.addHexAction(eventName, handler);
                     if(handler != null) {
-                        $hex.on(eventName, { "hex":hex, "grid":this}, handler);
                         this._actions.set(eventName, handler);
                     } else {
                         this._actions.delete(eventName);
@@ -31,25 +29,37 @@
                 }, this);
             }
         };
-        this.draw = function(svg, scale) {
-            this.scale = scale;
-            this.root = svg.selectAll("g").data([this])
-                            .enter().append("g");
+        this.draw = function(svgid) {
+            var svg = d3.select("#" + svgid);
+            this.root = svg.selectAll("g").data([this]);
+            this.root.enter().append("g");
+            this.root.exit().remove();
             this.redraw();
+        };
+        this.setScale = function(scale) {
+            this.scale = scale;
+            if(this._isDrawn()) {
+                var points = hexPoints(scale)
+                this.root.selectAll("polygon")
+                            .attr('transform', function(d) { return "translate(" + d.getOffset(scale) + ")";})
+                            .attr('points', points);
+            }
         };
         this.redraw = function() {
             var scale = this.scale
                 , points = hexPoints(scale)
+                , grid = this
+                , polygons = this.root.selectAll("polygon").data(this._getSafeHexes(), function(d) { return grid._getIndex(d.r,d.c); })
+                , actions = this._actions
                 ;
-            this.root.selectAll("polygon")
-                        .data(this._getSafeHexes())
-                        .enter().append("polygon")
+            polygons.exit().remove();
+            polygons.enter().append("polygon")
                             .attr('class', function(d) { return d.getClasses(); })
                             .attr('data-row', function(d) { return d.r; })
                             .attr('data-column', function(d) { return d.c })
                             .attr('transform', function(d) { return "translate(" + d.getOffset(scale) + ")";})
                             .attr('points', points)
-                            .each(function(d) { d.setNode(d3.select(this)); });
+                            .each(function(d) { d.setNode(d3.select(this)); d.addHexActions(actions); });
         };
         this.getHex = function(row, column) {
             return this._hexes.get(this._getIndex(row, column));
@@ -63,38 +73,45 @@
                 hex = new Hex(this, row, column);
                 this._hexes.set(index, hex);
                 this.redraw();
-                $hex = $(hex.getNode()[0]);
-                this._actions.forEach(function(handler, eventName) {
-                    $hex.off(eventName);
-                    $hex.on(eventName, { "hex":hex, "grid":this}, handler);
-                }, this);
             }
         };
         this.deleteHex = function(row, column) {
-            var index = this._getIndex(row, column)
-                , hex = this._hexes.get(index)
-                ;
-            if(hex !== undefined) {
-                hex.getNode().remove();
-                this._hexes.delete(index);
-            }
+            this._hexes.delete(this._getIndex(row, column));
+            this.redraw();
         };
         this.loadFromDimensions = function(height, width) {
             this.height = height;
             this.width = width;
             var row = 0
               , column = 0
+              , oldHexes = new Map()
+              , index
+              , hex
               ;
+            if(this._hexes != undefined) {
+                oldHexes = this._hexes;
+            }
             this._hexes = new Map();
             while(row < height) {
                 while(column < width) {
-                    var hex = new Hex(this, row, column);
-                    this._hexes.set(this._getIndex(row, column), hex)
+                    index = this._getIndex(row, column);
+                    hex = oldHexes.get(index);
+                    if(hex === undefined) {
+                        hex = new Hex(this, row, column);
+                    }
+                    this._hexes.set(index, hex)
                     column++;
                 }
                 row++;
                 column = 0;
             }
+            if(this._isDrawn()) {
+                this.redraw();
+            }
+        };
+        //"Private" functions
+        this._isDrawn = function() {
+            return this.root != undefined;
         };
         this._getSafeHexes = function() {
             var safe = []
@@ -114,6 +131,7 @@
         this._init = function() {
             this._initialized = true;
             this._actions = new Map();
+            this.scale = 30;
         };
         if(this._initialized) {
             return new Grid();
