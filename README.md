@@ -13,3 +13,8 @@ Note: redrawing removes all handlers
 ## Delete hexes from grid on click:
     grid.setHexAction("click", function(event) { var grid = event.data.grid, hex = event.data.hex; grid.deleteHex(hex.r, hex.c); });
 
+
+#Dependencies:
+##React
+npm init -y
+npm install babel-cli@6 babel-preset-react-app@3

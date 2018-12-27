@@ -38,3 +38,20 @@ war {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+
+task startServer(type:Exec) {
+    commandLine "./server/start_server.sh"
+}
+
+task killServer(type:Exec) {
+    commandLine "bash", "./server/kill_server.sh"
+}
+
+task restartServer {
+    tasks.killServer.execute()
+    tasks.startServer.execute()
+}
+
+task react(type:Exec) {
+    commandLine "npx", "babel", "src/main/react", "--out-dir", "static/js/processed", "--presets", "react-app/prod"
+}
