@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+  <div>
+    Rows: <input id="rows" type="number" value="7" />
+    Columns: <input id="columns" type="number" value="7" />
+    <input type="button" onclick="setDimensions();" value="Set map" />
+  </div>
+  <div>
+    Scale: <input id="scale" type="number" value="30" />
+    <input type="button" onclick="scale();" value="Set scale" />
+  </div>
+  <div>
+    <input type="button" onclick="draw();" value="Draw" />
+  </div>
+
+  <svg id="hex"></svg>
+{% endblock %}
+{% block js %}
+  <script src="static/js/lib/d3.min.js"></script>
+  <script src="static/js/lib/jquery-2.1.4.min.js"></script>
+  <script src="static/js/objects/Grid.js"></script>
+  <script src="static/js/objects/Hex.js"></script>
+  <script src="static/js/test.js"></script>
+{% endblock %}

@@ -1,0 +1,76 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+
+      var map1 = {}
+        , map2 = {}
+        , map3 = []
+        , map4 = new Map()
+        , t0 = 0
+        , t1 = 0
+        , i = 0
+        , j = 0
+        ;
+      ///BUILD ///
+      //String key map
+      t0 = performance.now();
+      for(i = 0; i++; i < 100000) {
+        map1[i + ","] = i;
+      }
+      t1 = performance.now();
+      console.log("Building string key map took " + (t1 - t0) + " milliseconds.")
+      //int key map
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        map2[i] = i;
+      }
+      t1 = performance.now();
+      console.log("Building int key map took " + (t1 - t0) + " milliseconds.")
+      //actual map
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        map4.set(i + ",",i);
+      }
+      t1 = performance.now();
+      console.log("Building actual map took " + (t1 - t0) + " milliseconds.")
+      //array
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        map3.push(i);
+      }
+      t1 = performance.now();
+      console.log("Building array took " + (t1 - t0) + " milliseconds.")
+      ///Pull ///
+      //String key map
+      t0 = performance.now();
+      for(i = 0; i++; i < 100000) {
+        j = map1[i + ","];
+      }
+      t1 = performance.now();
+      console.log("Pulling from string key map took " + (t1 - t0) + " milliseconds.")
+      //int key map
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        j = map2[i];
+      }
+      t1 = performance.now();
+      console.log("Pulling from int key map took " + (t1 - t0) + " milliseconds.")
+      //actual map
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        j = map4.get(i + ",");
+      }
+      t1 = performance.now();
+      console.log("Pulling from actual map took " + (t1 - t0) + " milliseconds.")
+      //array
+      t0 = performance.now();
+      for(var i = 0; i++; i < 100000) {
+        j = map3[i];
+      }
+      t1 = performance.now();
+      console.log("Pulling from array took " + (t1 - t0) + " milliseconds.")
+    </script>
+  </body>
+</html>

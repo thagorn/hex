@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+  <div>
+    <div id="button">Submit</div>
+    <input id="text" type="text" placeholder="chat"></div>
+    <ul id="output"></ul>
+  </div>
+{% endblock %}
+{% block js %}
+  <script src="/static/js/lib/jquery-2.1.4.min.js"></script>
+  <script src="/static/js/lib/socket.io.js"></script>
+  <script src="/static/js/chat.js"></script>
+{% endblock %}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output/>
+    <orderEntry type="inheritedJdk"/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <excludeFolder url="file://$MODULE_DIR$/build"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+    </content>
+    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-core/1.19.4/21c5319c82ca29705715b315553a16f11b16655e/jersey-core-1.19.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-core/1.19.4/e304b20bd0dfd07bb2afa90363b1faffb963bd4e/jersey-core-1.19.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-server/1.19.4/44df9a1310c1278b62658509aca3ca53978e8822/jersey-server-1.19.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-server/1.19.4/8d1bfd81e1f90be84b7a48add7a39acc2c7c2c04/jersey-server-1.19.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-servlet/1.19.4/fbdcb39db6a6976944a621fe11bf1d2ff048d7c2/jersey-servlet-1.19.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-servlet/1.19.4/b5d47c7e48cdfd399ccf6adcc35efae179c4f2d1/jersey-servlet-1.19.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-server/9.4.14.v20181114/b36a3d52d78a1df6406f6fa236a6eeff48cbfef6/jetty-server-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-server/9.4.14.v20181114/55db20ea68c9c1b0ed264d80e7d75b4988da87a6/jetty-server-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-servlet/9.4.14.v20181114/96f501462af425190ff7b63e387692c1aa3af2c8/jetty-servlet-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-servlet/9.4.14.v20181114/204b8a84adf3ce354138509c42638b5b2d223d1f/jetty-servlet-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/javax.ws.rs/jsr311-api/1.1.1/59033da2a1afd56af1ac576750a8d0b1830d59e6/jsr311-api-1.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/javax.ws.rs/jsr311-api/1.1.1/bcc4b7b569ef8bb9b82e48cf23b5aaac29a4fb4e/jsr311-api-1.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/3cd63d075497751784b2fa84be59432f4905bf7c/javax.servlet-api-3.1.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/ab3976d4574c48d22dc1abf6a9e8bd0fdf928223/javax.servlet-api-3.1.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.4.14.v20181114/6d0c8ac42e9894ae7b5032438eb4579c2a47f4fe/jetty-http-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.4.14.v20181114/3c4f8a942909cabe6d029f835c185207eb91af75/jetty-http-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.4.14.v20181114/a8c6a705ddb9f83a75777d89b0be59fcef3f7637/jetty-io-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.4.14.v20181114/6132108ccabbe181707af911e5a68fd8e8806ff/jetty-io-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-security/9.4.14.v20181114/6cbeb2fe9b3cc4f88a7ea040b8a0c4f703cd72ce/jetty-security-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-security/9.4.14.v20181114/33555125c5988fca12273f60a0aa545d848de54a/jetty-security-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.4.14.v20181114/5bb3d7a38f7ea54138336591d89dd5867b806c02/jetty-util-9.4.14.v20181114.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.4.14.v20181114/94e89a8c9f82e38555e95b9f7f58344a247e862c/jetty-util-9.4.14.v20181114-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/junit/junit/4.13-beta-1/1bc4a3b4a2d01a08c3a2cc8143666565b846ed17/junit-4.13-beta-1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/junit/junit/4.13-beta-1/9dce6ee8700922293d5fe52ac9435cc2707bd2ba/junit-4.13-beta-1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-all/1.3/63a21ebc981131004ad02e0434e799fd7f3a8d5a/hamcrest-all-1.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-all/1.3/47e033b7ab18c5dbd5fe29fc1bd5a40afe028818/hamcrest-all-1.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.19.4/9b1f3cf3fdd02d313018f1a67c42106e6ce9f60d/jersey-client-1.19.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.19.4/481aba49fca8b4c6d919c4ca86bf9097e56b433/jersey-client-1.19.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/awhitworth/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+  <component name="ModuleRootManager"/>
+</module>

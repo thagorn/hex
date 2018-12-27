@@ -1,0 +1,11 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <title>{% block title %}{% endblock %}</title>
+<head>
+<body class="{% block bodyClass %}{% endblock %}">
+  {% block content %}{% endblock %}
+  {% block js %}{% endblock %}
+</body>
+</html>
