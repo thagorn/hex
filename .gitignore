@@ -1,5 +1,8 @@
 *.swp
 .idea/
+hexserver.iml
+hexserver.ipr
+hexserver.iws
 build/
 out/
 .gradle/
