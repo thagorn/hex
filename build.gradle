@@ -1,57 +1,37 @@
-group 'com.thagorn'
-version '1.0'
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.3'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'jetty'
+group = 'com.thagorn.hex'
+version = '0.0.1-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+java {
+	sourceCompatibility = '17'
 }
 
 configurations {
-    embeddedJetty
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
-    /*
-    testCompile group: 'junit', name: 'junit', version: '+'
-    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '+'
-    testCompile group: 'org.glassfish.jersey', name: 'client', version: '+'
-    */
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '+'
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '+'
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '+'
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '+'
-    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '+'
-    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '+'
-    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '+'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation("com.google.guava:guava:32.1.2-jre")
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-war {
-    from "$buildDir/classes/main"
-    manifest { 
-        attributes 'Main-Class': 'com.thagorn.hexserver.Application'
-    }
-
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
-task startServer(type:Exec) {
-    commandLine "./server/start_server.sh"
-}
-
-task killServer(type:Exec) {
-    commandLine "bash", "./server/kill_server.sh"
-}
-
-task restartServer {
-    tasks.killServer.execute()
-    tasks.startServer.execute()
-}
-
-task react(type:Exec) {
-    commandLine "npx", "babel", "src/main/react", "--out-dir", "static/js/processed", "--presets", "react-app/prod"
+tasks.named('test') {
+	useJUnitPlatform()
 }

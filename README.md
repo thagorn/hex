@@ -1,3 +1,17 @@
+# Dependencies:
+
+java 17
+node 18
+
+# To launch frontend:
+cd app
+npm start
+navigate to http://localhost:3000/
+
+# To launch backend:
+./gradlew bootRun
+navigate to http://localhost:8080/
+
 # Creating a grid:
     grid = new grid();
     grid.loadFromDimensions(2,3);
@@ -14,7 +28,4 @@ Note: redrawing removes all handlers
     grid.setHexAction("click", function(event) { var grid = event.data.grid, hex = event.data.hex; grid.deleteHex(hex.r, hex.c); });
 
 
-# Dependencies:
-## React
-npm init -y
-npm install babel-cli@6 babel-preset-react-app@3
+
