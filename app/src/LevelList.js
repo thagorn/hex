@@ -50,7 +50,7 @@ const LevelList = () => {
     });
 
     return (
-        <div>
+        <>
             <AppNavbar/>
             <Container fluid>
                 <div className="float-end">
@@ -70,7 +70,7 @@ const LevelList = () => {
                     </tbody>
                 </Table>
             </Container>
-        </div>
+        </>
     );
 };
 

@@ -43,7 +43,8 @@ const LevelEdit = () => {
 
     const title = <h2>{level.id ? 'Edit Level' : 'Create Level'}</h2>;
 
-    return (<div>
+    return (
+        <>
             <AppNavbar/>
             <Container>
                 {title}
@@ -64,7 +65,7 @@ const LevelEdit = () => {
                     </FormGroup>
                 </Form>
             </Container>
-        </div>
+        </>
     )
 };
 
