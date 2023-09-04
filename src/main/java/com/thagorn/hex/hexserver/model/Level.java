@@ -27,9 +27,6 @@ public class Level {
     @NonNull
     String name;
     String description;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private User owner;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<HexMap> maps;
-
 }
