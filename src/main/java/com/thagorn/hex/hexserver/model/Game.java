@@ -29,6 +29,6 @@ public class Game {
     private User owner;
     @ManyToMany
     private Set<User> players;
-    // @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    // private Set<Level> levels;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Level> levels;
 }
