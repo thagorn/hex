@@ -27,8 +27,6 @@ public class Level {
     @NonNull
     String name;
     String description;
-    // @ManyToOne(cascade = CascadeType.PERSIST)
-    // private Game game;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<HexMap> maps;
 }
