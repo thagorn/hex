@@ -4,12 +4,12 @@ java 17
 node 18
 
 # To launch frontend:
-cd app
-npm start
+    cd app
+    npm start
 navigate to http://localhost:3000/
 
 # To launch backend:
-./gradlew bootRun
+    ./gradlew bootRun
 navigate to http://localhost:8080/
 
 # Creating a grid:
