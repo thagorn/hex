@@ -1,6 +1,7 @@
 package com.thagorn.hex.hexserver.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +25,14 @@ public class Level {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "name")
     @NonNull
     String name;
+
+    @Column(name = "description")
     String description;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<HexMap> maps;
 }
