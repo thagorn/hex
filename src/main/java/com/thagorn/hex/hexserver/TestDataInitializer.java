@@ -22,7 +22,9 @@ public class TestDataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Stream.of("Test Level 1", "DND level", "The other test level",
                 "Pretends to be the third test level").forEach(name ->
-                repository.save(new Level(name))
+                {if (repository.findByName(name) == null) {
+                    repository.save(new Level(name));
+                }}
         );
 
         Level level = repository.findByName("DND level");

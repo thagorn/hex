@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "hex_maps")
 public class HexMap {
     @Id
     @GeneratedValue
