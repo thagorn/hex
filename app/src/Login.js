@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
 
 const Login = () => {
     const initialFormState = {
@@ -14,7 +14,7 @@ const Login = () => {
     const handleChange = (event) => {
         const { name, value } = event.target
 
-        setLevel({ ...level, [name]: value })
+        setUser({ ...user, [name]: value })
     }
 
     const handleSubmit = async (event) => {
@@ -48,8 +48,7 @@ const Login = () => {
                             onChange={handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>
-                        <Button color="secondary" tag={Link} to="/levels">Cancel</Button>
+                        <Button color="primary" type="submit">Submit</Button>
                     </FormGroup>
                 </Form>
             </Container>
