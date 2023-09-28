@@ -10,6 +10,8 @@ const Login = () => {
     };
     const [user, setUser] = useState(initialFormState);
     const navigate = useNavigate();
+    const params = new URLSearchParams(window.location.search)
+    const error = params.get('error')
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -27,8 +29,10 @@ const Login = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        });
-        navigate('/levels');
+        }).then(v => {
+            debugger
+            if(v.redirected) window.location = v.url
+        }).catch(e => console.warn(e))
     }
 
     return (
@@ -44,12 +48,13 @@ const Login = () => {
                     </FormGroup>
                     <FormGroup>
                         <Label for="password">Password</Label>
-                        <Input type="text" name="password" id="password" value={user.password || ''}
+                        <Input type="password" name="password" id="password" value={user.password || ''}
                             onChange={handleChange}/>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Submit</Button>
                     </FormGroup>
+                    <div className="error">{error}</div>
                 </Form>
             </Container>
         </>

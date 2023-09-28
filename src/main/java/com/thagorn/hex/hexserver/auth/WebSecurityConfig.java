@@ -25,7 +25,8 @@ public class WebSecurityConfig {
             .formLogin()
                 .loginPage("/login") // Customize the login page URL
                 .loginProcessingUrl("/api/perform_login")
-                .defaultSuccessURL("/dashboard") // Redirect after successful login
+                .defaultSuccessURL("/levels") // Redirect after successful login
+                .failureUrl("/login?error=true")
                 .permitAll()
             .and()
             .logout()
