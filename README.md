@@ -27,10 +27,9 @@ navigate to http://localhost:8080/
 
     spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
     spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+    # Hibernate ddl auto (create, create-drop, validate, update)
+    spring.jpa.hibernate.ddl-auto= update
     ```
-
-# Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto= update
 
 # Creating a grid:
     grid = new grid();
