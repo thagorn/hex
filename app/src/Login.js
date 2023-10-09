@@ -21,6 +21,7 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const data = new FormData(event.target)
 
         await fetch(`/api/perform_login`, {
             method: 'POST',
@@ -28,7 +29,7 @@ const Login = () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: data
         }).then(v => {
             debugger
             if(v.redirected) window.location = v.url

@@ -29,22 +29,22 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .loginProcessingUrl("/api/perform_login")
                         .defaultSuccessUrl(REACT_ORIGIN + "/success") // just for testing
-                        .failureUrl(REACT_ORIGIN + "/failure") // just for testing
+                        .failureUrl(REACT_ORIGIN + "/login?error=Incorrect username or password")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-             User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
+    // @Bean
+    // public InMemoryUserDetailsManager userDetailsService() {
+    //     UserDetails user =
+    //          User.withDefaultPasswordEncoder()
+    //             .username("user")
+    //             .password("password")
+    //             .roles("USER")
+    //             .build();
 
-        return new InMemoryUserDetailsManager(user);
-    }
+    //     return new InMemoryUserDetailsManager(user);
+    // }
 }
