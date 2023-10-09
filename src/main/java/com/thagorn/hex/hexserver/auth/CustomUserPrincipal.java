@@ -1,13 +1,18 @@
 package com.thagorn.hex.hexserver.auth;
 
-import org.springframework.security.core.userdetails.User;
+import java.util.Collection;
+import java.util.Collections;
+
+import com.thagorn.hex.hexserver.model.User;
+
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserPrincipal implements UserDetails {
     private User user;
 
-    public CustomUserPrincipal(User user) {
-        this.user = user;
+    public CustomUserPrincipal(User user2) {
+        this.user = user2;
     }
 
     @Override
@@ -32,11 +37,16 @@ public class CustomUserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.user.username;
+        return this.user.getUsername();
     }
 
     @Override
     public String getPassword() {
-        return this.user.password;
+        return this.user.getPassword();
+    }
+
+    @Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        return Collections.emptyList();
     }
 }
