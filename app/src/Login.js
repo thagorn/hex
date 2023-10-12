@@ -25,11 +25,7 @@ const Login = () => {
 
         await fetch(`/api/perform_login`, {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
+            body: new URLSearchParams(data)
         }).then(v => {
             debugger
             if(v.redirected) window.location = v.url
