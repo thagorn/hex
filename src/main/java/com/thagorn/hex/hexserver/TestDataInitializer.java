@@ -2,6 +2,8 @@ package com.thagorn.hex.hexserver;
 
 import com.google.common.collect.ImmutableSet;
 import com.thagorn.hex.hexserver.model.HexMap;
+import com.thagorn.hex.hexserver.model.User;
+import com.thagorn.hex.hexserver.model.UserRepository;
 import com.thagorn.hex.hexserver.model.Level;
 import com.thagorn.hex.hexserver.model.LevelRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +15,11 @@ import java.util.stream.Stream;
 public class TestDataInitializer implements CommandLineRunner {
 
     private final LevelRepository repository;
+    private final UserRepository user_repository;
 
-    public TestDataInitializer(LevelRepository repository) {
+    public TestDataInitializer(LevelRepository repository, UserRepository user_repository) {
         this.repository = repository;
+        this.user_repository = user_repository;
     }
 
     @Override
@@ -42,6 +46,14 @@ public class TestDataInitializer implements CommandLineRunner {
         repository.save(level);
 
         repository.findAll().forEach(System.out::println);
+
+        if (user_repository.findByUsername("TestUser") == null) {
+            User test_user = new User();
+            test_user.setUsername("TestUser");
+            test_user.setPassword("{noop}password");
+            user_repository.save(test_user);
+        }
+        user_repository.findAll().forEach(System.out::println);
     }
 
 }
