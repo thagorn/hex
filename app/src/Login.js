@@ -27,7 +27,6 @@ const Login = () => {
             method: 'POST',
             body: new URLSearchParams(data)
         }).then(v => {
-            debugger
             if(v.redirected) window.location = v.url
         }).catch(e => console.warn(e))
     }
