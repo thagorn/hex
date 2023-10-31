@@ -3,10 +3,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
-const Login = () => {
+const Signup = () => {
     const initialFormState = {
         username: '',
+        email: '',
         password: '',
+        confirm_password: ''
     };
     const [user, setUser] = useState(initialFormState);
     const navigate = useNavigate();
@@ -21,22 +23,35 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        let validation_error = validationErrors()
+        if (validation_error) {
+          params.set('error', validation_error)
+          window.location.search = params;
+          return
+        }
         const data = new FormData(event.target)
 
-        await fetch(`/api/perform_login`, {
+        await fetch(`/api/register`, {
             method: 'POST',
             body: new URLSearchParams(data)
         }).then(v => {
             if(v.redirected) window.location = v.url
         }).catch(e => console.warn(e))
     }
+    const validationErrors = () => {
+      if (user.password !== user.confirm_password) {
+        return 'Password and confirmation did not match'
+      }
+
+      return false
+    }
 
     return (
         <>
             <AppNavbar/>
             <Container>
-                <h2>Log in</h2>
-                <Link to="/signup">Create an Account</Link>
+                <h2>Sign Up</h2>
+                <Link to="/login">Already Have an Account</Link>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label for="username">Username</Label>
@@ -44,8 +59,18 @@ const Login = () => {
                             onChange={handleChange}/>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="email">Email</Label>
+                        <Input type="text" name="email" id="email" value={user.email || ''}
+                            onChange={handleChange}/>
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="password">Password</Label>
                         <Input type="password" name="password" id="password" value={user.password || ''}
+                            onChange={handleChange}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="confirm_password">Confirm Password</Label>
+                        <Input type="password" name="confirm_password" id="confirm_password" value={user.confirm_password || ''}
                             onChange={handleChange}/>
                     </FormGroup>
                     <FormGroup>
@@ -58,4 +83,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default Signup;

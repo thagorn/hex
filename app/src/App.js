@@ -6,6 +6,7 @@ import LevelEdit from './LevelEdit';
 import Login from './Login';
 import LoginFailure from './LoginFailure';
 import LoginSuccess from './LoginSuccess';
+import Signup from './Signup';
 import './App.css';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/login' element={<Login/>}/>
           <Route path='/failure' element={<LoginFailure/>}/>
           <Route path='/success' element={<LoginSuccess/>}/>
+          <Route path='/signup' element={<Signup/>}/>
         </Routes>
       </Router>
   )
