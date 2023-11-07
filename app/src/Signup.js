@@ -31,7 +31,7 @@ const Signup = () => {
         }
         const data = new FormData(event.target)
 
-        await fetch(`/api/register`, {
+        await fetch(`/api/user`, {
             method: 'POST',
             body: new URLSearchParams(data)
         }).then(v => {
