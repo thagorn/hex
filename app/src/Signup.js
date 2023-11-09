@@ -29,11 +29,15 @@ const Signup = () => {
           window.location.search = params;
           return
         }
-        const data = new FormData(event.target)
+        const data = JSON.stringify(user)
 
-        await fetch(`/api/user`, {
+        await fetch(`/api/user/`, {
             method: 'POST',
-            body: new URLSearchParams(data)
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
         }).then(v => {
             if(v.redirected) window.location = v.url
         }).catch(e => console.warn(e))
