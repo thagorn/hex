@@ -8,4 +8,12 @@ public class GenericFormResponse {
         this.message = message;
         this.success = success;
     }
+
+    public String getMessage() {
+      return this.message;
+    }
+
+    public Boolean getSuccess() {
+      return this.success;
+    }
 }

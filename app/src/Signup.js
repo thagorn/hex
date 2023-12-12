@@ -11,9 +11,9 @@ const Signup = () => {
         confirm_password: ''
     };
     const [user, setUser] = useState(initialFormState);
-    const navigate = useNavigate();
     const params = new URLSearchParams(window.location.search)
-    const error = params.get('error')
+    const [error, setError] = useState(params.get('error'));
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -25,9 +25,8 @@ const Signup = () => {
         event.preventDefault();
         let validation_error = validationErrors()
         if (validation_error) {
-          params.set('error', validation_error)
-          window.location.search = params;
-          return
+            setError(validation_error)
+            return
         }
         const data = JSON.stringify(user)
 
@@ -39,15 +38,19 @@ const Signup = () => {
             },
             body: data
         }).then(v => {
-            if(v.redirected) window.location = v.url
+            return v.json()
+        }).then(data => {
+            if (!data.success) {
+                setError(data.message)
+            }
         }).catch(e => console.warn(e))
     }
     const validationErrors = () => {
-      if (user.password !== user.confirm_password) {
-        return 'Password and confirmation did not match'
-      }
+        if (user.password !== user.confirm_password) {
+            return 'Password and confirmation did not match'
+        }
 
-      return false
+        return false
     }
 
     return (

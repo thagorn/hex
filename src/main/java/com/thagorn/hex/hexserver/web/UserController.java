@@ -48,7 +48,7 @@ public class UserController {
                 message = "Something weird happened in UserController.java"; //should be unreachable
             }
             GenericFormResponse response = new GenericFormResponse(message, false);
-            return ResponseEntity.badRequest().body(response);
+            return ResponseEntity.ok().body(response);
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Existing user: {}", existingUser);
