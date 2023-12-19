@@ -40,7 +40,9 @@ const Signup = () => {
         }).then(v => {
             return v.json()
         }).then(data => {
-            if (!data.success) {
+            if (data.success) {
+                window.location = '/login?username=' + user.username
+            } else {
                 setError(data.message)
             }
         }).catch(e => console.warn(e))

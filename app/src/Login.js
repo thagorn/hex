@@ -4,14 +4,14 @@ import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
 const Login = () => {
+    const params = new URLSearchParams(window.location.search)
+    const error = params.get('error')
     const initialFormState = {
-        username: '',
+        username: params.get('username') || '',
         password: '',
     };
     const [user, setUser] = useState(initialFormState);
     const navigate = useNavigate();
-    const params = new URLSearchParams(window.location.search)
-    const error = params.get('error')
 
     const handleChange = (event) => {
         const { name, value } = event.target
